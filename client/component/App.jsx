@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import Register from "./Register.jsx";
 import Profile from "./Profile.jsx";
 import Home from "./Home.jsx";
 import Header from "./Header.jsx";
 import '../styles/app.scss';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
 
@@ -20,6 +21,8 @@ export default class App extends Component {
     this.editProfile = this.editProfile.bind(this);
     this.editingProfile = this.editingProfile.bind(this);
     this.saveProfile = this.saveProfile.bind(this);
+    this.deleteProfile = this.deleteProfile.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   addCurrentUser(user) {
@@ -31,6 +34,7 @@ export default class App extends Component {
     // this.setState({...currentUser, user)
     // fetch('/api/profile/:id')
   }
+
   editingProfile(event) {
     this.setState(
       {
@@ -42,6 +46,19 @@ export default class App extends Component {
       () => console.log(this.state.currentUser)
     );
   }
+
+  handleSelect(e) {
+    this.setState(
+      {
+        currentUser: {
+          ...this.state.currentUser,
+          type: e.target.value,
+        },
+      },
+      () => console.log(this.state.currentUser)
+    );
+  }
+
   saveProfile(event) {
     event.preventDefault();
     // on click function that will send fetch request that will send put request to server with current user in body/params
@@ -59,41 +76,59 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteProfile(event) {
+    event.preventDefault();
+    let id = this.state.currentUser.id;
+    fetch(`http://localhost:8080/api/profile/${id}`, {
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ currentUser: {}, signedIn: false })
+        this.props.history.push('/register');
+      })
+  }
+
+
   render() {
     return (
       <div className='app'>
-        <Router>
-          <Header currentUser={this.state.currentUser} />
-          <Switch>
-            <Route
-              exact
-              path='/'
-              component={() => (
-                <Home currentUser={this.state.currentUser} addCurrentUser={this.addCurrentUser} />
-              )}
-            />
-            <Route
-              exact
-              path='/register'
-              component={() => <Register addCurrentUser={this.addCurrentUser} />}
-            />
-            <Route
-              exact
-              path='/profile'
-              render={() => (
-                <Profile
-                  inEditMode={this.state.inEditMode}
-                  currentUser={this.state.currentUser}
-                  editProfile={this.editProfile}
-                  editingProfile={this.editingProfile}
-                  signedIn={this.state.signedIn}
-                  saveProfile={this.saveProfile}
-                />
-              )}
-            />
-          </Switch>
-        </Router>
-      </div>
+        <Header currentUser={this.state.currentUser} />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            component={() => (
+              <Home currentUser={this.state.currentUser} addCurrentUser={this.addCurrentUser} />
+            )}
+          />
+          <Route
+            exact
+            path='/register'
+            component={() => <Register addCurrentUser={this.addCurrentUser} />}
+          />
+          <Route
+            exact
+            path='/profile'
+            render={() => (
+              <Profile
+                inEditMode={this.state.inEditMode}
+                currentUser={this.state.currentUser}
+                editProfile={this.editProfile}
+                editingProfile={this.editingProfile}
+                signedIn={this.state.signedIn}
+                saveProfile={this.saveProfile}
+                deleteProfile={this.deleteProfile}
+                history={this.props.history}
+                handleSelect={this.handleSelect}
+              />
+            )}
+          />
+        </Switch>
+
+      </div >
     );
   }
 }
+
+export default withRouter(App);

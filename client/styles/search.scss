@@ -1,0 +1,30 @@
+body {
+    .container{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-family: Roboto, Helvetica Neue, sans-serif;
+      .hosts {
+        display: flex;
+        align-items: center;
+        border: solid;
+        border-radius: 10px;
+        border-color: C85137;
+        width: 17.5rem;
+        height: 20rem;
+        margin: 1rem;
+        font-weight: 200;
+        background-color: F6F6F6;
+        //box-shadow: 10px 10px darkred;
+        font-family: helvetica; //change to roboto
+    }
+
+    ul {
+        list-style-type: none;
+    }
+  }
+  @media screen and (max-width: 1400px) {
+      .container {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+  }
+}

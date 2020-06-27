@@ -1,0 +1,25 @@
+.searchContainer {
+    .searchForm{
+        .searchField {
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .submitButton {
+            padding: 5px;
+            font-family: Roboto, Helvetica Neue, sans-serif;
+            font-weight: 200;
+            background-color: rgb(239, 239, 239);
+            text-align: center;
+            width: 120px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        .submitButton:hover {
+            background-color: rgb(195, 195, 195)
+        }
+    }
+}

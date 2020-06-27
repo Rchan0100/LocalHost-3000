@@ -14,7 +14,7 @@ class List extends Component {
         <Item key={user.id} username={user.username} name={user.name} email={user.email} home={user.home} />
       );
     }
-    return <div>{items}</div>;
+    return <div className="container">{items}</div>;
   }
 }
 

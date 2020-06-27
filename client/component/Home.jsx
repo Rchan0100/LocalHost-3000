@@ -11,7 +11,6 @@ class Home extends Component {
       return (
         <div>
           <Search />
-          <Link to='/profile'>Profile</Link>
         </div>
       );
     } else {

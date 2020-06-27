@@ -42,10 +42,10 @@ userController.createUser = (req, res, next) => {
       res.locals.user = data.rows[0];
       return next();
     } else (next({
-      log: 'There is a duplicate value for username or email.',
+      log: 'Username and/or email already exists.',
       status: 400,
       message: {
-        err: 'There is a duplicate value for username or email.'
+        err: 'Username and/or email already exists.'
       }
     })).catch(err => {
       console.log("Error in userController.createUser: ", err);

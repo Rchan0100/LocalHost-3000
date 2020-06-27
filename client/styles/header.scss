@@ -18,6 +18,12 @@
   .searchButton {
     margin-right: 30px;
   }
+  .searchButton:hover{
+    background-color: darkred;
+  }
+  .profileButton:hover {
+    background-color: darkred;
+  }
   p {
     font-size: 20px;
     font-family: Roboto, Helvetica Neue, sans-serif;

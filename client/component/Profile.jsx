@@ -12,26 +12,27 @@ class Profile extends Component {
     if (this.props.signedIn && !this.props.inEditMode) {
       return (
         <div>
-          <ul className = "profileAttrContainer">
-            <li className = "profileAttr"><span>Username: </span> {this.props.currentUser.username}</li>
-            <li className = "profileAttr"><span>E-mail: </span>
+          <ul className="profileAttrContainer">
+            <li className="profileAttr">Username: {this.props.currentUser.username}</li>
+            <li className="profileAttr">Email:
               <a href={`mailto:${this.props.currentUser.email}`} target="_blank" rel="noopener noreferrer">
                 {this.props.currentUser.email}
               </a>
             </li>
-            <li className = "profileAttr"><span>Home: </span> {this.props.currentUser.home}</li>
+            <li className="profileAttr">Home: {this.props.currentUser.home}</li>
           </ul>
-          <button className ="profileButton" id="edit-profile-button" onClick={this.props.editProfile}>Edit Profile</button>
+          <button className="profileButton" onClick={this.props.editProfile}>Edit Profile</button>
+          <button onClick={this.props.deleteProfile}>Delete Profile</button>
         </div >
       );
     }
     if (this.props.signedIn && this.props.inEditMode) {
       return (
         <div>
-          <form className ="entire-profile-form" onSubmit={this.props.saveProfile}>
+          <form className="entire-profile-form" onSubmit={this.props.saveProfile}>
             <p>Username:</p>
             <input
-              className = "edit-profile-input"
+              className="edit-profile-input"
               name='username'
               value={this.props.currentUser.username}
               placeholder='Username'
@@ -39,7 +40,7 @@ class Profile extends Component {
             ></input>
             <p>Email:</p>
             <input
-              className = "edit-profile-input"
+              className="edit-profile-input"
               name='email'
               value={this.props.currentUser.email}
               placeholder="Email"
@@ -47,13 +48,13 @@ class Profile extends Component {
             ></input>
             <p>Home:</p>
             <input
-              className = "edit-profile-input"
+              className="edit-profile-input"
               name='home'
               placeholder='Home'
               value={this.props.currentUser.home}
               onChange={this.props.editingProfile}
             ></input>
-            <button className = "profileButton" type='submit'>Confirm Profile</button>
+            <button className="profileButton" type='submit'>Confirm Profile</button>
           </form>
         </div>
       );

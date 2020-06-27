@@ -64,7 +64,6 @@ class Register extends Component {
     return (
       <div className='register'>
         <h1>Register</h1>
-        <span>{this.state.error ? this.state.error : ' '}</span>
         <form onSubmit={this.handleSubmit} className='registrationform'>
           <select onChange={this.handleSelect}>
             <option value='Traveler'>Traveler</option>
@@ -114,6 +113,9 @@ class Register extends Component {
           />
           <button type='submit'>Register</button>
         </form>
+        <span className='errormessage'>
+          {this.state.error ? 'Username or email already taken. Please try again' : ' '}
+        </span>
         <span>
           Have an account?{' '}
           <Link className='registerLoginLink' to='/'>

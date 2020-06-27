@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List.jsx';
 import Bar from './Bar.jsx';
+import '../styles/search.scss';
 
 class Search extends Component {
   constructor() {
