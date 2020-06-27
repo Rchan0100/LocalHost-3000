@@ -10,6 +10,7 @@ class Search extends Component {
       searchVal: '',
       results: [],
       hasResults: false,
+      error: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,27 +21,6 @@ class Search extends Component {
   }
 
   handleSubmit(event) {
-    // event.preventDefault();
-    // let results = [
-    //   {
-    //     id: 5,
-    //     username: 'test',
-    //     password: 'test2',
-    //     name: 't1',
-    //     home: 'JPN',
-    //     email: 't1@t1.com',
-    //     type: 'traveler',
-    //   },
-    //   {
-    //     id: 6,
-    //     username: 'test',
-    //     password: 'test2',
-    //     name: 't1',
-    //     home: 'USA',
-    //     email: 'random@random.edu',
-    //     type: 'traveler',
-    //   },
-    // ];
 
     // this.setState({ results: results, hasResults: true });
     let home = this.state.searchVal
@@ -50,22 +30,29 @@ class Search extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ results: data, hasResults: true });
-      });
+        if (data.err) {
+          this.setState({ searchVal: '', error: 'No results found' })
+          // window.alert("No users found!")
+        } else {
+          console.log('data')
+          this.setState({ results: data, hasResults: true });
+        }
+      })
   }
 
   render() {
     if (!this.state.hasResults)
       return (
         <div>
-          <Bar handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+          <Bar searchValue={this.state.searchVal} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+          {this.state.error ? <p className="searchError">{this.state.error}</p> : null}
         </div>
       );
 
     if (this.state.hasResults)
       return (
         <div>
-          <Bar handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+          <Bar searchValue={this.state.searchVal} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
           <List searchResults={this.state.results} />
         </div>
       );
