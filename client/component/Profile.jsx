@@ -46,7 +46,7 @@ class Profile extends Component {
               placeholder="Email"
               onChange={this.props.editingProfile}
             ></input>
-            <p>Home:</p>
+            <p className="profileAttr">Home:</p>
             <input
               className="edit-profile-input"
               name='home'
