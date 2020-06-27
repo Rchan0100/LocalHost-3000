@@ -45,5 +45,22 @@
 };
 
 .profileAttrContainer {
+    margin-top: 100px;
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+        font-weight: 500;
+        font-size: 17px; 
+    }
+    .profileAttr {
+        margin-bottom: 10px;
+        align-items: center;
+        font-family: Roboto, Helvetica Neue, sans-serif;
+        font-weight: 200;
+        font-size: 17px; 
+    }
+
 }

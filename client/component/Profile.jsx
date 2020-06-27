@@ -13,15 +13,15 @@ class Profile extends Component {
       return (
         <div>
           <ul className = "profileAttrContainer">
-            <li className = "profileAttr">Username: {this.props.currentUser.username}</li>
-            <li className = "profileAttr">Email:
+            <li className = "profileAttr"><span>Username: </span> {this.props.currentUser.username}</li>
+            <li className = "profileAttr"><span>E-mail: </span>
               <a href={`mailto:${this.props.currentUser.email}`} target="_blank" rel="noopener noreferrer">
                 {this.props.currentUser.email}
               </a>
             </li>
-            <li className = "profileAttr">Home: {this.props.currentUser.home}</li>
+            <li className = "profileAttr"><span>Home: </span> {this.props.currentUser.home}</li>
           </ul>
-          <button className ="profileButton" onClick={this.props.editProfile}>Edit Profile</button>
+          <button className ="profileButton" id="edit-profile-button" onClick={this.props.editProfile}>Edit Profile</button>
         </div >
       );
     }

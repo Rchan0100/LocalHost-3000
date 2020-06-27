@@ -32,10 +32,10 @@ dummy instance:
     Register Controller
  */
 userController.createUser = (req, res, next) => {
-  const query = `INSERT INTO user_info (username, password, name, home, email, type, profile)
+  const query = `INSERT INTO user_info (username, password, name, home, email, type)
      SELECT '${req.body.username}', '${req.body.password}', '${req.body.name}', '${req.body.home}', '${req.body.email}', '${req.body.type}'
-     WHERE NOT EXISTS (SELECT username, password, name, home, email, type, profilepic FROM user_info WHERE username='${req.body.username}' OR email='${req.body.email}')
-     RETURNING username, password, name, home, email, type, profilepic;`;
+     WHERE NOT EXISTS (SELECT username, password, name, home, email, type FROM user_info WHERE username='${req.body.username}' OR email='${req.body.email}')
+     RETURNING username, password, name, home, email, type;`;
 
   db.query(query).then(data => {
     if (data.rows.length > 0) {
@@ -136,7 +136,7 @@ userController.deleteProfile = (req, res, next) => {
 userController.updateProfile = (req, res, next) => {
   console.log("Inside userController.updateProfile")
 
-  const query = `UPDATE user_info SET username='${req.body.username}', password='${req.body.password}', name='${req.body.name}', home='${req.body.home}', email='${req.body.email}', type='${req.body.type}, profilepic='${req.body.profilepic}' WHERE id='${req.params.id}' returning *`
+  const query = `UPDATE user_info SET username='${req.body.username}', password='${req.body.password}', name='${req.body.name}', home='${req.body.home}', email='${req.body.email}', type='${req.body.type}', profilepic='${req.body.profilepic}' WHERE id='${req.params.id}' returning *`
   db.query(query).then(data => {
     console.log("Updating User's information");
     console.log(data.rows);
