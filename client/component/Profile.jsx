@@ -21,8 +21,8 @@ class Profile extends Component {
             </li>
             <li className="profileAttr">Home: {this.props.currentUser.home}</li>
           </ul>
-          <button className="profileButton" onClick={this.props.editProfile}>Edit Profile</button>
-          <button onClick={this.props.deleteProfile}>Delete Profile</button>
+          <button className="profileButton" id="edit-profile-button" onClick={this.props.editProfile}>Edit Profile</button>
+          <button className="profileButton" id="delete-profile-button" onClick={this.props.deleteProfile}>Delete Profile</button>
         </div >
       );
     }

@@ -44,6 +44,22 @@
 
 };
 
+#edit-profile-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 48%;
+}
+
+#delete-profile-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 48%;
+}
+
 .profileAttrContainer {
     margin-top: 100px;
     list-style-type: none;
